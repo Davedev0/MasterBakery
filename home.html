@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Baker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <!-- emailjs.init script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-container">
+                    <div class="logo-img">
+                      <img src="logo.png" alt="Master Baker Logo">
+                    </div>
+                    <a class="logo" href="index.html">Master Baker</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#our-story">Our Story</a></li>
+                    <li><a href="#featured-delights">Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact-details">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+  <a href="javascript:void(0);" id="backToTop" class="back-to-top">
+    <i class="fa fa-angle-double-up"></i>
+    </a>
+
+    <!-- Login Modal -->
+    <div class="modal login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign In</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="#" class="show-register">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign Up</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirm Password</label>
+                    <input type="password" id="register-confirm" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+                <div class="form-footer">
+                    <p>Already have an account? <a href="#" class="show-login">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div class="modal contact-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Us a Message</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Full Name</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-subject">Subject</label>
+                    <input type="text" id="contact-subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-overlay"></div>
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span class="total-price">₱0.00</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-background"></div>
+    <div class="container hero-container">
+        <div class="hero-content">
+            <h1>The Art of Filipino Baker</h1>
+            <p>Handcrafted Filipino breads and pastries, baked fresh daily with premium ingredients, and a relentless love for perfection.</p>
+            <a href="#featured-delights" class="btn">View Our Menu</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="our-story">
+        <div class="container">
+            <div class="story-container">
+                <div class="story-content">
+                    <h2>Our Master's Promise</h2>
+                     <p>At Master Baker, we believe that exceptional baking starts with the finest ingredients and time‑honored techniques. Our founder, a seasoned Filipino master baker with over 20 years of experience, personally sources the best local grains, organic dairy, and seasonal fruits to craft our artisanal breads and pastries.</p>
+
+                       <p>Every loaf and pastry is hand‑crafted with meticulous attention to detail—from the slow fermentation of our sourdough starters to the precise lamination of croissant dough. We bake in small batches throughout the day, guaranteeing peak freshness and flavor in every bite.</p>
+
+                      <p>Beyond our products, we’re committed to the community. We partner with local farmers and suppliers, reducing environmental impact while supporting the regional economy. When you step into Master Baker, you’re not just buying bread—you’re joining a tradition of Filipino baking excellence and craftsmanship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Delights Section -->
+    <section id="featured-delights" class="featured-delights">
+        <div class="container">
+            <h2 class="section-title">Our Premium Delights</h2>
+            <p class="section-subtitle">Deliciously balanced flavors, handcrafted with love, bring the warmth of Filipino tradition to every bite perfect for sharing, savoring, and creating sweet memories together in every sunrise and sunset celebration.</p>
+            <div class="delights-grid">
+                <!-- Pandesal -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_pandesal.jpg" alt="Pandesal" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Pandesal</h3>
+                        <p>Soft, slightly sweet rolls rolled in fine breadcrumbs, baked to a golden hug—perfect for breakfast and pairing with coffee, bringing warmth to every Filipino household with its comforting aroma and fluffy texture.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">5.50</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.7 | 203 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="1" data-name="Pandesal" data-price="5.50" data-image="brd_pandesal.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ensaymada -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_ensaymada.jpg" alt="Ensaymada" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Ensaymada</h3>
+                        <p>Rich, buttery brioche‑like spiral topped with melted butter, sugar, and grated cheese—a sweet indulgence that melts in your mouth, evoking nostalgic mornings and festive celebrations across the Philippines.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">12.75</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.9 | 156 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="2" data-name="Ensaymada" data-price="12.75" data-image="brd_ensaymada.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Monay -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_monay.jpg" alt="Monay" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Monay</h3>
+                        <p>Dense, round loaf with a signature split, offering a hearty chew that makes it a timeless comfort for any Filipino table, ideal for dunking in soup or enjoying with palapa.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">6.25</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(4.2 | 98 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="3" data-name="Monay" data-price="6.25" data-image="brd_monay.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pan de Coco -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_pandecoco.jpg" alt="Pan de Coco" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Pan de Coco</h3>
+                        <p>Fluffy sweet bun stuffed with gooey coconut‑sugar filling, delivering tropical sweetness in every bite, a beloved treat that captures the islands' love for coconut flavors.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">8.50</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.6 | 124 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="4" data-name="Pan de Coco" data-price="8.50" data-image="brd_pandecoco.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spanish Bread -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_spanishbread.jpg" alt="Spanish Bread" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Spanish Bread</h3>
+                        <p>Soft roll wrapped around a buttery, sweet breadcrumb filling, creating a nostalgic treat that feels like home, often shared among family during afternoon merienda.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">7.25</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.8 | 167 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="5" data-name="Spanish Bread" data-price="7.25" data-image="brd_spanishbread.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pan de Regla -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_panderegla.jpg" alt="Pan de Regla" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Pan de Regla</h3>
+                        <p>Light, fluffy bread with a bright red sweet filling, often called "menstruation bread," offering a cheerful burst of flavor that brightens days and traditions alike.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">9.00</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(4.3 | 89 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="6" data-name="Pan de Regla" data-price="9.00" data-image="brd_panderegla.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pianono -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_pianono.jpg" alt="Pianono" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Pianono</h3>
+                        <p>Thin sponge cake roll filled with buttery jam, delicately rolled to a soft, cloud‑like texture that melts on the tongue, perfect for dessert tables and special gatherings.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">10.50</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.7 | 112 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="7" data-name="Pianono" data-price="10.50" data-image="brd_pianono.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Biscocho -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_biscocho.jpg" alt="Biscocho" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Biscocho</h3>
+                        <p>Crunchy, twice‑baked slices brushed with butter and sugar, delivering a satisfying snap and sweet aftertaste, a favorite crunchy snack for all ages.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">9.75</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.5 | 96 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="8" data-name="Biscocho" data-price="9.75" data-image="brd_biscocho.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pan de Ube -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_pandeube.jpg" alt="Pan de Ube" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Pan de Ube</h3>
+                        <p>Purple yam‑infused bread with a cheese swirl, offering a vibrant hue and subtly sweet, creamy flavor that showcases the beloved ube ingredient.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">11.25</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(4.9 | 143 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="9" data-name="Pan de Ube" data-price="11.25" data-image="brd_pandeube.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pan de Leche -->
+                <div class="delight-card">
+                    <div class="delight-image-container">
+                        <img src="brd_pandeleche.jpg" alt="Pan de Leche" class="delight-image">
+                    </div>
+                    <div class="delight-content">
+                        <h3>Pan de Leche</h3>
+                        <p>Slightly sweet milk‑rich bread, sometimes crowned with a crumbly crust, perfect for a comforting snack any time, pairing wonderfully with hot chocolate or coffee.</p>
+                        <div class="card-footer">
+                            <div class="price-rating">
+                                <p class="price">6.75</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.6 | 108 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="buy-now">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                                <button class="add-to-cart" data-id="10" data-name="Pan de Leche" data-price="6.75" data-image="brd_pandeleche.jpg">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container about-container">
+            <h2 class="section-title">Meet Our Master Bakers</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                  <div class="member-image" onclick="this.classList.toggle('active')">
+                  <img src="pfp_1.jpg" alt="Dave Fuentes" class="default-image">
+                   <img src="hover_pfp1.jpg" alt="Dave Fuentes" class="hover-image">
+                </div>
+                    <h3 class="member-name">Dave Fuentes</h3>
+                    <p class="member-role">Head Baker</p>
+                    <p>With over 20 years of experience, Dave's brings traditional European techniques to our kitchen.</p>
+                </div>
+                <div class="team-member">
+                     <div class="member-image" onclick="this.classList.toggle('active')">
+                  <img src="pfp_2.jpeg" alt="Christian Toledo" class="default-image">
+                   <img src="hover_pfp2.jpeg" alt="Christian Toledo" class="hover-image">
+                </div>
+                    <h3 class="member-name">Christian Toledo</h3>
+                    <p class="member-role">Pastry Chef</p>
+                    <p>Skilled baker with a decade of mastery in crafting premium pastries, trained alongside the city's finest artisans.</p>
+                </div>
+                <div class="team-member">
+                     <div class="member-image" onclick="this.classList.toggle('active')">
+                      <img src="pfp_3.jpeg" alt="Rafael Dominguez" class="default-image">
+                      <img src="hover_pfp3.jpeg" alt="Rafael Dominguez" class="hover-image">
+                  </div>
+                    <h3 class="member-name">Rafael Dominguez</h3>
+                    <p class="member-role">Sourdough Specialist</p>
+                    <p>Excellent baker with over 5 years of experience in making sweets and pastries. Accomodated by finest bakers n the city.</p>
+                </div>
+                 <div class="team-member">
+                 <div class="member-image"onclick="this.classList.toggle('active')">
+                      <img src="pfp_4.jpeg" alt="Dave Fuentes" class="default-image">
+                      <img src="hover_pfp4.jpeg" alt="Karl Borqueta" class="hover-image">
+                  </div>
+                    <h3 class="member-name">Karl Borqueta</h3>
+                    <p class="member-role">Sourdough Specialist</p>
+                    <p>Young baking prodigy with over 5 years of experience and collaborated with various celebrities for events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-details" class="section-p1">
+        <div class="details">
+            <span>GET IN TOUCH</span>
+            <h2>Visit one of our bakery locations or contact us today</h2>
+            <h3>Head Office</h3>
+            <div>
+                <li>
+                    <i class="fas fa-map"></i>
+                    <p>Trece Martires City Cavite</p>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <p>masterbaker527@gmail.com</p>
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+63 813 131 365</p>
+                </li>
+                <li>
+                    <i class="fas fa-clock"></i>
+                    <p>Monday to Saturday: 9:00 to 16:00</p>
+                </li>
+            </div>
+            <button class="btn contact-btn">Send Us a Message</button>
+        </div>
+        <div class="map">
+            <iframe
+                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=trece%20martirez%20city%20cavite%20+(ecommers%20)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-logo">Master Baker</div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/masterbaker.2025?igsh=ajB3MTMzOTAxcWtw"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1BZCHeGNWz/"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p class="copyright">© 2025 Master Baker. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="emailjs-init.js"></script>
+</body>
+</html>

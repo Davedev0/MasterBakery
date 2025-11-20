@@ -1,3 +1,13 @@
+setTimeout(function() {
+        document.getElementById('intro-screen').style.display = 'none';
+            document.querySelector('.next-logo').style.display = 'flex';
+            
+            setTimeout(function() {
+                window.location.href = "home.html";
+            }, 500);
+        }, 500);
+
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
@@ -83,22 +93,15 @@ window.addEventListener('click', (e) => {
 // Pag-submit ng login form
 document.getElementById('login-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Maligayang pagbabalik! Matagumpay kang nakapag-login sa Master Baker!');
+        alert('Welcome back! You have successfully logged in to Master Baker.');
         loginModal.classList.remove('active');
 });
 
 // Pag-submit ng register form
 document.getElementById('register-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Maligayang pagdating! Matagumpay kang nakapag-rehistro sa Master Baker!');
+        alert('Welcome! You have successfully registered with Master Baker.');
         registerModal.classList.remove('active');
-});
-
-// Pag-submit ng contact form
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Salamat sa iyong mensahe! Makikipag-ugnayan kami sa iyo sa lalong madaling panahon.');
-        contactModal.classList.remove('active');
 });
 
 // Cart Functionality - para sa shopping cart
@@ -131,7 +134,7 @@ cartOverlay.addEventListener('click', () => {
         cartOverlay.classList.remove('active');
 });
 
-// Magdagdag sa cart
+// sa add to cart
 addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
                 const id = button.dataset.id;
@@ -153,22 +156,17 @@ addToCartButtons.forEach(button => {
                                 quantity: 1
                         });
                 }
-                
                 updateCart();
-                
-                // Magpakita ng alert na matagumpay na naidagdag sa cart
-                alert(`Matagumpay na naidagdag ang ${name} sa iyong shopping cart!`);
+                alert(`Successfully Added to Cart!`);
         });
 });
 
-// Bumili ngayon (hindi idinadagdag sa cart)
+// Sa pagbili (Buy Now)
 buyNowButtons.forEach(button => {
         button.addEventListener('click', () => {
                 const name = button.dataset.name;
                 const price = parseFloat(button.dataset.price);
-                
-                // Magpakita ng alert para sa direktang pagbili
-                alert(`Salamat sa iyong pagbili ng ${name} para sa ₱${price.toFixed(2)}! Ihahanda na namin ang iyong order.`);
+                alert(`Thankyou for your order, Have a nice day!`);
         });
 });
 
@@ -233,6 +231,7 @@ function updateCart() {
         document.querySelectorAll('.remove-item').forEach(button => {
                 button.addEventListener('click', () => {
                         const id = button.dataset.id;
+                        alert(`Successfully Removed to Cart!`);
                         cart = cart.filter(item => item.id !== id);
                         updateCart();
                 });
@@ -242,12 +241,29 @@ function updateCart() {
 // Checkout button
 document.querySelector('.checkout-btn').addEventListener('click', () => {
         if (cart.length === 0) {
-                alert('Walang laman ang iyong shopping cart!');
+                alert('Your shopping cart is empty!');
         } else {
-                alert('Salamat sa iyong order! Ihahanda na namin ang iyong mga produkto at makikipag-ugnayan kami sa iyo para sa mga susunod na hakbang.');
+                alert('Thank you for your order! We are preparing your products and will be in touch with you for the next steps.');
                 cart = [];
                 updateCart();
                 cartModal.classList.remove('active');
                 cartOverlay.classList.remove('active');
         }
 });
+
+window.onscroll = function() {
+        const backToTopIcon = document.getElementById("backToTop");
+       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20)
+      {
+          backToTopIcon.style.display = "block";  
+      } else {
+         backToTopIcon.style.display = "none"; 
+      }
+    };
+
+     document.getElementById("backToTop").onclick = function() {
+      window.scrollTo({
+        top: 0,
+       behavior: "smooth" 
+     });
+   };

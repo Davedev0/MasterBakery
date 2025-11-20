@@ -49,12 +49,49 @@ p {
     margin: 0 auto;
 }
 
+   .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: block;
+    background-color: var(--gold-dark);
+    color: var(--warm-gray);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px; 
+    cursor:pointer;
+    font-size: 20px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    z-index: 999;
+    -webkit-animation: up 5s infinite; 
+}
+
+@keyframes up {
+    0% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translateY(-20px); 
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.back-to-top:hover {
+    background-color: #222; 
+}
+
 .btn {
     display: inline-block;
     background-color: var(--gold);
     color: var(--charcoal);
     padding: 14px 32px;
-    border-radius: 30px;
+    border-radius: 5px;
     text-decoration: none;
     font-weight: 700;
     transition: var(--transition);
@@ -83,6 +120,40 @@ p {
 section {
     padding: 80px 0;
 }
+
+        .screen-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .screen-intro  .logo-intro  {
+            font-size: 110px;
+            color: var(--gold-dark);
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .screen-intro .next-logo {
+            font-size: 110px;
+            color: var(--gold-dark);
+            display: none;
+            align-items: center;
+            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
+        }
+
 
 /* Navigation */
 header {
@@ -407,21 +478,6 @@ header.scrolled {
             box-shadow: var(--shadow-hover);
         }
 
-        .delight-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--charcoal);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(230, 194, 0, 0.3);
-            letter-spacing: 0.5px;
-        }
-
         .delight-image-container {
             height: 250px;
             overflow: hidden;
@@ -448,28 +504,18 @@ header.scrolled {
         }
 
         .delight-card h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 1.4rem;
             margin-bottom: 12px;
             color: var(--charcoal);
-            font-weight: 600;
+            font-weight: 500;
             position: relative;
             display: inline-block;
             align-self: flex-start;
         }
 
-        .delight-card h3:after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: var(--gold);
-            bottom: -8px;
-            left: 0;
-        }
-
         .delight-card p {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             flex-grow: 1;
             color: var(--charcoal-light);
             font-size: 0.95rem;
@@ -538,7 +584,7 @@ header.scrolled {
         .buy-now, .add-to-cart {
             flex: 1;
             padding: 12px;
-            border-radius: 30px;
+            border-radius: 5px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -577,7 +623,7 @@ header.scrolled {
             box-shadow: 0 6px 15px rgba(230, 194, 0, 0.35);
         }
 
-        /* Featured Card - Improved Layout */
+        /* Featured Card  */
         .featured-section {
             grid-column: 1 / -1;
             margin-bottom: 30px;
@@ -599,13 +645,6 @@ header.scrolled {
             width: 55%;
             padding: 30px;
             justify-content: center;
-        }
-
-        .featured-card .delight-badge {
-            top: 20px;
-            right: 20px;
-            font-size: 0.85rem;
-            padding: 8px 16px;
         }
 
 /* About Section */
@@ -638,34 +677,44 @@ header.scrolled {
 }
 
 .team-member:hover {
-    transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 
 .member-image {
+    position: relative;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin: 0 auto 20px;
     overflow: hidden;
     border: 3px solid var(--gold-light);
+    cursor: pointer;
 }
 
 .member-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.5s ease;
 }
 
-.member-name {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+.member-image .hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
 }
 
-.member-role {
-    color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 15px;
+ .member-role {
+   color: var(--gold-dark);
+   font-weight: 00;
+}
+.member-image.active .default-image {
+    opacity: 0;
+}
+
+.member-image.active .hover-image {
+    opacity: 1;
 }
 
 /* Contact Section */
@@ -767,8 +816,8 @@ footer:before {
 }
 
 .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.4rem;
     margin-bottom: 10px;
     color: var(--white);
 }
@@ -874,7 +923,7 @@ footer:before {
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Lato', sans-serif;
     transition: var(--transition);
@@ -1217,6 +1266,14 @@ footer:before {
     .action-buttons {
         flex-direction: column;
     }
+    
+    .screen-intro .logo-intro {
+       font-size: 50px;
+   }
+   
+     .screen-intro .next-logo {
+       font-size: 50px;
+   }
 }
 
 @media (max-width: 576px) {
