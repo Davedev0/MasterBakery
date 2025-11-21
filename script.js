@@ -162,13 +162,24 @@ addToCartButtons.forEach(button => {
 });
 
 // Sa pagbili (Buy Now)
-buyNowButtons.forEach(button => {
-        button.addEventListener('click', () => {
-                const name = button.dataset.name;
-                const price = parseFloat(button.dataset.price);
-                alert(`Thankyou for your order, Have a nice day!`);
+document.addEventListener('DOMContentLoaded', function() {
+    const buyNowButtons = document.querySelectorAll('.buy-now');
+    
+    buyNowButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const confirmed = confirm(`Are you sure you want to buy this bread?`);
+            
+            if (confirmed) {
+                alert('Thank you for your order, Have a nice day!');
+            } else {
+                alert('Order cancelled.');
+            }
         });
+    });
 });
+
 
 // I-update ang cart
 function updateCart() {
@@ -228,10 +239,17 @@ function updateCart() {
                 });
         });
         
+        // Para sa pag remove 
         document.querySelectorAll('.remove-item').forEach(button => {
                 button.addEventListener('click', () => {
                         const id = button.dataset.id;
-                        alert(`Successfully Removed to Cart!`);
+                        const confirmed = confirm(`Are you sure you want to remove?`);
+            
+            if (!confirmed) {
+                return;
+            } else {
+                alert('Successfully Removed!');
+            }
                         cart = cart.filter(item => item.id !== id);
                         updateCart();
                 });
@@ -251,6 +269,7 @@ document.querySelector('.checkout-btn').addEventListener('click', () => {
         }
 });
 
+// Scroll on top 
 window.onscroll = function() {
         const backToTopIcon = document.getElementById("backToTop");
        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20)

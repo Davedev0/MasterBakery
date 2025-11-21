@@ -16,11 +16,9 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   // Send email using EmailJS
   emailjs.send('service_1w3k69g', 'template_enwxgkh', formData)
     .then(function(response) {
-      console.log('SUCCESS!', response.status, response.text);
       alert('Message sent successfully!');
 
     }, function(error) {
-      console.log('FAILED...', error);
       alert('Failed to send message. Please try again.');
     });
 });
